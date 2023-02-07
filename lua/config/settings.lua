@@ -8,6 +8,7 @@ set.softtabstop = 4
 set.shiftwidth = 4
 set.expandtab = true
 
+set.mouse = ''
 set.smartindent = true
 
 set.wrap = false
@@ -19,6 +20,10 @@ set.undofile = true
 
 set.hlsearch = false
 set.incsearch = true
+set.ignorecase = true
+set.smartcase = true
+
+set.completeopt = 'menuone,noselect'
 
 set.termguicolors = true
 
