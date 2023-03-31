@@ -2,6 +2,8 @@ local set = vim.opt
 
 set.nu = true
 set.relativenumber = true
+set.cursorline = true
+set.cursorlineopt = "number"
 
 set.tabstop = 4
 set.softtabstop = 4
@@ -31,4 +33,3 @@ set.scrolloff = 8
 set.signcolumn = "yes"
 
 set.updatetime = 50
-
