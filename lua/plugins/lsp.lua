@@ -19,10 +19,17 @@ return {
     },
     config = function()
         -- Lsp zero setup
-        local lsp = require('lsp-zero').preset({})
+        local lsp = require('lsp-zero').preset({
+            manage_nvim_cmp = {
+                set_sources = 'recommended'
+            }
+        })
 
         lsp.on_attach(function(client, bufnr)
-            lsp.default_keymaps({ buffer = bufnr })
+            lsp.default_keymaps({
+                buffer = bufnr,
+                preserve_mappings = false
+            })
             local opts = { buffer = bufnr }
             local bind = vim.keymap.set
 
@@ -30,12 +37,58 @@ return {
             bind('n', '<leader>f', '<cmd>lua vim.lsp.buf.format()<cr>', opts)
         end)
 
+
         lsp.set_sign_icons({
             error = '✘',
             warn = '▲',
             hint = '⚑',
             info = '»'
         })
+
+        require('lspconfig').hls.setup({
+            cmd = {"haskell-language-server-wrapper", "--lsp", "--logfile", "~/log.txt"},
+            root_dir = vim.loop.cwd,
+            settings = {
+              rootMarkers = {"./git/"},
+              manageHLS = "GHCup"
+            }
+
+        })
+
+        require('lspconfig').texlab.setup({
+            cmd = { "texlab" },
+            filetypes = { "plaintex", "tex", "bib" },
+            settings = {
+                texlab = {
+                    auxDirectory = "./buildfiles",
+                    bibtexFormatter = "texlab",
+                    build = {
+                        args = {
+                            "-shell-escape",
+                            "-synctex=1",
+                            "-interaction=nonstopmode",
+                            "-file-line-error",
+                            "-lualatex",
+                            "-outdir=output",
+                            "%f",
+                        },
+                        executable = "latexmk",
+                        forwardSearchAfter = false,
+                        onSave = true,
+                    },
+                    chktex = {
+                        onEdit = true,
+                        onOpenAndSave = true,
+                    },
+                    latexFormatter = "latexindent",
+                },
+            },
+            on_init = function(client)
+                client.server_capabilities.semanticTokensProvider = nil
+            end,
+        })
+
+
         lsp.setup()
 
         -- cmp setup
@@ -48,7 +101,13 @@ return {
                 ['<Tab>'] = cmp_action.tab_complete(),
                 ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
                 ['<Return>'] = cmp.mapping.confirm({ select = false }),
-            }
+                ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+                ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+            },
+            window = {
+                completion = cmp.config.window.bordered(),
+                documentation = cmp.config.window.bordered(),
+            },
         })
     end
 }
