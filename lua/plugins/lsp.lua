@@ -35,6 +35,8 @@ return {
 
             bind('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
             bind('n', '<leader>f', '<cmd>lua vim.lsp.buf.format()<cr>', opts)
+            bind('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+            bind('x', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
         end)
 
 
