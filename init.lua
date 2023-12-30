@@ -1,29 +1,16 @@
-vim.g.mapleader = " "
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
-require('lazy_config')
-require('settings')
-require('remap')
-
--- Fix for lsp highlighting
-
-local links = {
-  ['@lsp.type.namespace'] = '@namespace',
-  ['@lsp.type.type'] = '@type',
-  ['@lsp.type.class'] = '@type',
-  ['@lsp.type.enum'] = '@type',
-  ['@lsp.type.interface'] = '@type',
-  ['@lsp.type.struct'] = '@structure',
-  ['@lsp.type.parameter'] = '@parameter',
-  ['@lsp.type.variable'] = '@variable',
-  ['@lsp.type.property'] = '@property',
-  ['@lsp.type.enumMember'] = '@constant',
-  ['@lsp.type.function'] = '@function',
-  ['@lsp.type.method'] = '@method',
-  ['@lsp.type.macro'] = '@macro',
-  ['@lsp.type.decorator'] = '@function',
-}
-for newgroup, oldgroup in pairs(links) do
-  vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true })
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
+
+require("vim-options")
+require("mappings")
+require("lazy").setup("plugins")

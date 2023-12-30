@@ -1,3 +1,4 @@
+vim.g.mapleader = ' ' 
 local set = vim.opt
 
 set.nu = true
