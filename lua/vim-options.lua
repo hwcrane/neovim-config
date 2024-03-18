@@ -1,4 +1,4 @@
-vim.g.mapleader = ' ' 
+vim.g.mapleader = ' '
 local set = vim.opt
 
 set.nu = true
@@ -13,6 +13,7 @@ set.expandtab = true
 
 set.mouse = ''
 set.smartindent = true
+set.splitright = true
 
 set.wrap = false
 

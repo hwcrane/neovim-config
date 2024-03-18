@@ -4,7 +4,8 @@ return {
 	{ "neovim/nvim-lspconfig" },
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/nvim-cmp" },
-	{ "L3MON4D3/LuaSnip" },
+  { "saadparwaiz1/cmp_luasnip"},
+	{ "L3MON4D3/LuaSnip", dependencies = { "rafamadriz/friendly-snippets" } },
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v3.x",
@@ -35,11 +36,31 @@ return {
 				},
 			})
 
+      require'lspconfig'.typst_lsp.setup{
+        settings = {
+          exportPdf = "onType" -- Choose onType, onSave or never.
+              -- serverPath = "" -- Normally, there is no need to uncomment it.
+        }
+      }
 			-- CMP CONFIG --
 			local cmp = require("cmp")
 			local cmp_action = require("lsp-zero").cmp_action()
+      local luasnip = require("luasnip")
+      luasnip.setup()
+
+			require("luasnip.loaders.from_vscode").load()
 
 			cmp.setup({
+				snippet = {
+					expand = function(args)
+						luasnip.lsp_expand(args.body)
+					end,
+				},
+
+				sources = cmp.config.sources({
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
+				}),
 				mapping = cmp.mapping.preset.insert({
 					-- `Enter` key to confirm completion
 					["<CR>"] = cmp.mapping.confirm({ select = false }),
