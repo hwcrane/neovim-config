@@ -35,3 +35,5 @@ set.scrolloff = 8
 set.signcolumn = "yes"
 
 set.updatetime = 50
+
+set.spelllang = "en_gb"

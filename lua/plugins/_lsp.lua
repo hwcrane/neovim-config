@@ -4,7 +4,7 @@ return {
 	{ "neovim/nvim-lspconfig" },
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/nvim-cmp" },
-  { "saadparwaiz1/cmp_luasnip"},
+	{ "saadparwaiz1/cmp_luasnip" },
 	{ "L3MON4D3/LuaSnip", dependencies = { "rafamadriz/friendly-snippets" } },
 	{
 		"VonHeikemen/lsp-zero.nvim",
@@ -30,23 +30,33 @@ return {
 			-- MASON CONFIG --
 			require("mason").setup({})
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls" },
+				ensure_installed = { "lua_ls", "rust_analyzer@2024-09-30" },
 				handlers = {
 					lsp_zero.default_setup,
 				},
 			})
 
-      require'lspconfig'.typst_lsp.setup{
-        settings = {
-          exportPdf = "onType" -- Choose onType, onSave or never.
-              -- serverPath = "" -- Normally, there is no need to uncomment it.
-        }
-      }
+			require("lspconfig").typst_lsp.setup({
+				settings = {
+					exportPdf = "onType", -- Choose onType, onSave or never.
+					-- serverPath = "" -- Normally, there is no need to uncomment it.
+				},
+			})
+			require("lspconfig").rust_analyzer.setup({
+				settings = {
+					["rust-analyzer"] = {
+						check = {
+							command = "clippy",
+						},
+					},
+				},
+			})
+
 			-- CMP CONFIG --
 			local cmp = require("cmp")
 			local cmp_action = require("lsp-zero").cmp_action()
-      local luasnip = require("luasnip")
-      luasnip.setup()
+			local luasnip = require("luasnip")
+			luasnip.setup()
 
 			require("luasnip.loaders.from_vscode").load()
 
