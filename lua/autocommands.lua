@@ -1,5 +1,5 @@
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "typst",
+  pattern = {"*.typ", "*.md"},
   callback = function ()
     vim.opt_local.wrap = true
     vim.opt_local.linebreak = true

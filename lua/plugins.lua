@@ -1,9 +1,9 @@
 return {
-	{
-        "numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
-	},
-	{ "folke/neodev.nvim", opts = {} },
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  },
+  { "folke/neodev.nvim", opts = {} },
 }
