@@ -15,8 +15,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- Move lines in visual mode
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+-- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- J keeps cursor in the same place
 vim.keymap.set("n", "J", "mzJ`z")
