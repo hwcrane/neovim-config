@@ -30,11 +30,5 @@ return { -- Collection of various small independent plugins/modules
     require('mini.pairs').setup()
 
     require('mini.splitjoin').setup()
-
-    require('mini.files').setup()
-    vim.keymap.set('n', '-', function ()
-      MiniFiles.open(vim.api.nvim_buf_get_name(0))
-      MiniFiles.reveal_cwd()
-    end)
   end,
 }
