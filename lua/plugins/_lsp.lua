@@ -43,7 +43,7 @@ return {
 
       require("lspconfig").tinymist.setup({
         settings = {
-          exportPdf = "onSave", -- Choose onType, onSave or never.
+          exportPdf = "onType", -- Choose onType, onSave or never.
           formatterMode = "typstyle",
         },
       })
