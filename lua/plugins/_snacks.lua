@@ -21,6 +21,8 @@ return {
     words = { enabled = true },
     image = { enabled = true },
     zen = { enabled = true, minimal = true },
+    toggle = { enabled = true },
+    dim = { enabled = true },
 
     styles = {
       zen = {
@@ -52,6 +54,7 @@ return {
     { "<leader>sk", function() Snacks.picker.keymaps() end,                          desc = "Keymaps" },
     { "<leader>ld", function() Snacks.picker.lsp_definitions() end,                  desc = "Definition" },
     { "<leader>lr", function() Snacks.picker.lsp_references() end,                   nowait = true,                     desc = "References" },
+    { "<leader>td", function() Snacks.toggle.dim() end,                              nowait = true,                     desc = "Toggle Dim" },
   },
 
 
