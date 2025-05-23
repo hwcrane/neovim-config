@@ -54,3 +54,6 @@ vim.keymap.set("i", "<up>", "<nop>")
 vim.keymap.set("i", "<down>", "<nop>")
 vim.keymap.set("i", "<left>", "<nop>")
 vim.keymap.set("i", "<right>", "<nop>")
+
+-- Neogen documentation
+vim.keymap.set("n", "<leader>ng", "<cmd>Neogen<CR>")
