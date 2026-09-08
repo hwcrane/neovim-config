@@ -17,6 +17,10 @@
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"
     },
+    "diffview.nvim": {
+      "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
+      "src": "https://github.com/sindrets/diffview.nvim"
+    },
     "mason-lspconfig.nvim": {
       "rev": "40276c4df7e6bdce6801d6c035c6227f9115a855",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
