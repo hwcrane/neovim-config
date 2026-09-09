@@ -60,6 +60,10 @@
     "snacks.nvim": {
       "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
       "src": "https://github.com/folke/snacks.nvim"
+    },
+    "typst.vim": {
+      "rev": "1d5436c0f55490893892441c0eca55e6cdf4916c",
+      "src": "https://github.com/kaarmu/typst.vim"
     }
   }
 }
