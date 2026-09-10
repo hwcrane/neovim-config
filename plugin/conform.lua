@@ -5,13 +5,15 @@ require("conform").setup({
     lua = { "stylua" },
     python = {
       "isort",
-      "black"
+      "black",
+      "ruff format",
     },
-    rust = { "rustfmt", lsp_format = "fallback" }
+    rust = { "rustfmt", lsp_format = "fallback" },
+    markdown = { "prettier" }
   }
 })
 
-vim.keymap.set("", "<leader>f", function ()
+vim.keymap.set({ "v", "n" }, "<leader>f", function()
   require("conform").format({
     async = true,
     lsp_fallback = true
